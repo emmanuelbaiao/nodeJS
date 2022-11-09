@@ -12,3 +12,6 @@ console.log(divisao(10,5));
 console.log(subtracao(10,5));
 
 console.log(multiplicacao(10,5));
+
+
+const os = require('os');
