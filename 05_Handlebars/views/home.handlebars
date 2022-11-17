@@ -1,0 +1,22 @@
+{{#if usuarioLogado}}
+<h1>Seja bem vindo {{usu.nome}} </h1>
+<p>E-mail: {{ usu.email }} | Data Nascimento: {{ usu.dataNascimento }}</p>
+<hr>
+{{else}}
+<h1>Faça o Login!</h1>
+{{/if}}
+
+
+{{#each array}}
+    <p>{{this}}</p>
+{{/each}}
+
+<hr>
+
+<ul>
+{{#with animal}}
+    <ol>{{nome}}, {{idade}}, {{raca}}</ol>
+{{/with}}
+</ul>
+
+
