@@ -18,24 +18,29 @@
 </form>
 <hr>
 <h1>Lista de Clientes</h1>
-
-<table border="1px">
-    <tr>
-        <th>Id Cliente</th>
-        <th>CPF</th>
-        <th>Nome Cliente</th>
-        <th>Endereço</th>
-        <th>E-mail</th>
-        <th>Data Nascimento</th>
-    </tr>
+<div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Id Cliente</th>
+              <th scope="col">Nome Cliente</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Data Nascimento</th>
+            </tr>
+          </thead>
+<tbody>
     {{#each clientes}}
-    <tr>
+            <tr>
         <td>{{this.id_cliente}}</td>
-        <td>{{this.cpf_cliente}}</td>
         <td>{{this.nome_cliente}}</td>
+        <td>{{this.cpf_cliente}}</td>
         <td>{{this.endereco_cliente}}</td>
         <td>{{this.email_cliente}}</td>
-        <td>{{this.data_nascimento_cliente}}</td>
-    </tr>
+        <td>{{this.data_nascimento_cliente}}</td>              
+            </tr>
     {{/each}}
-</table>
+</tbody>
+        </table>
+      </div>

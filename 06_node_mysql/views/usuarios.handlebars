@@ -12,22 +12,27 @@
 </form>
 <hr>
 <h1>Lista de usuários</h1>
-
-<table border="1px">
-    <tr>
-        <th>Id Usuário</th>
-        <th>Nome Usuário</th>
-        <th>Endereço</th>
-        <th>E-mail</th>
-        <th>Data Nascimento</th>
-    </tr>
+<div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Id Usuário</th>
+              <th scope="col">Nome Usuário</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Data Nascimento</th>
+            </tr>
+          </thead>
+<tbody>
     {{#each usuarios}}
-    <tr>
+            <tr>
         <td>{{this.id_usuario}}</td>
         <td>{{this.nome_usuario}}</td>
         <td>{{this.endereco_usuario}}</td>
         <td>{{this.email_usuario}}</td>
-        <td>{{this.data_nascimento_usuario}}</td>
-    </tr>
+        <td>{{this.data_nascimento_usuario}}</td>              
+            </tr>
     {{/each}}
-</table>
+</tbody>
+        </table>
+      </div>
