@@ -1,20 +1,24 @@
 <form action="/cliente/save" method="post">
-    <label>Nome:</label>
-    <input type="text" name="nome" id=""/>
+    <div class="row mb-3">
+    <label for="colFormLabelSm" class="col-sm-1 col-form-label col-form-label-sm">Nome:</label>
+    
+    <input type="text" class="col-sm-11 form-control-sm" placeholder="Nome" name="nome" id=""/>
+    
     <br>
     <label>CPF:</label>
-    <input type="text" name="cpf" id=""/>
+    <input type="text" class="form-control" placeholder="CPF" name="cpf" id=""/>
     <br>
     <label>Endereço:</label>
-    <input type="text" name="endereco" id=""/>
+    <input type="text" class="form-control" placeholder="Endereço" name="endereco" id=""/>
     <br>
     <label>E-mail:</label>
-    <input type="email" name="email" id=""/>
+    <input type="email" class="form-control" placeholder="E-mail" name="email" id=""/>
     <br>
     <label>Data Nascimento:</label>
-    <input type="date" name="dataNascimento" id=""/>
-
-    <input type="submit" value="Cadastrar">
+    <input type="date" class="form-control" placeholder="Data Nascimento" name="dataNascimento" id=""/>
+    </div>
+    <br>
+    <input type="submit" class="btn btn-outline-success" value="Cadastrar">
 </form>
 <hr>
 <h1>Lista de Clientes</h1>

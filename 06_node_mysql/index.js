@@ -42,6 +42,98 @@ app.get('/clientes', (req,res)=>{
     })
 })
 
+//rota de usuários individual
+app.get('/usuario/:id', (req,res)=>{
+    const id = req.params.id;
+
+    const sql =  `select id_usuario, 
+                         nome_usuario, 
+                         endereco_usuario, 
+                         email_usuario, 
+                         data_nascimento_usuario 
+                    from usuario 
+                    where id_usuario = ${id}`;
+
+    conn.query(sql, (error, result) =>{
+        if(error){
+            console.log(error);
+            return
+        }
+        const usuario = result[0]
+        // console.log(usuario);
+        res.render('usuario', {usuario});
+    })
+})
+
+//rota para editar usuário
+app.get('/usuario/edit/:id', (req,res)=>{
+    const id = req.params.id;
+
+    const sql =  `select id_usuario, 
+                         nome_usuario, 
+                         endereco_usuario, 
+                         email_usuario, 
+                         data_nascimento_usuario 
+                    from usuario 
+                    where id_usuario = ${id}`;
+
+    conn.query(sql, (error, result) =>{
+        if(error){
+            console.log(error);
+            return
+        }
+        const usuario = result[0]
+        // console.log(usuario);
+        res.render('usuario-edit', {usuario});
+    })
+})
+
+//rota do botão atualizar usuário
+app.post('/usuario/edit/save', (req,res)=>{
+    const id = req.body.id_usuario;
+    const nome = req.body.nome;
+    const endereco = req.body.endereco;
+    const email = req.body.email;
+    const dataNascimento = req.body.dataNascimento;
+    
+    const sql = `UPDATE usuario 
+                    SET nome_usuario = '${nome}', 
+                    endereco_usuario = '${endereco}',
+                    email_usuario = '${email}',
+                    data_nascimento_usuario = '${dataNascimento}'
+                    WHERE id_usuario = ${id}`;
+
+        conn.query(sql, (erro) =>{
+            if(erro){
+                console.log(erro);
+                return
+            }
+            res.redirect('/usuarios')
+            //ou
+            //res.redirect('/usuarios/:id')
+        })
+})
+
+
+//rota para deletar usuário
+app.get('/usuario/delete/:id', (req,res)=>{
+    const id = req.params.id;
+
+    const sql =  `delete
+                    FROM usuario
+                    WHERE id_usuario = ${id}`;
+
+    conn.query(sql, (error, result) =>{
+        if(error){
+            console.log(error);
+            return
+        }
+        // console.log(usuario);
+        res.redirect('/usuarios');
+    })
+})
+
+//rota para cadastrar usuário (botão cadastro)
 app.post('/usuario/save', (req,res)=>{
     const nome = req.body.nome;
     const endereco = req.body.endereco;
