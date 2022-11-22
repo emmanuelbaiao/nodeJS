@@ -16,7 +16,7 @@ app.use(
 )
 app.use(express.json());
 
-//rota de usuário
+//rota de usuários
 app.get('/usuarios', (req,res)=>{
     const sql = `SELECT * FROM usuario`;
 
