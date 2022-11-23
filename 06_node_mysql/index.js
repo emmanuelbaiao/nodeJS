@@ -1,7 +1,7 @@
-const express = require('express');
-const exphbs  = require('express-handlebars');
-const mysql   = require('mysql');
-const app     = express();
+const express = require('express');                   //importando o modulo express
+const exphbs  = require('express-handlebars');        //importando módulo handlebars
+const conn    = require('./db/conn')                  //conexão POOL mysql
+const app     = express();                            //iniciando o método express
 
 //configurando Handlebars
 app.engine('handlebars', exphbs.engine());
@@ -176,27 +176,34 @@ app.get('/', (req,res) =>{
     res.render('home')
 })
 
-//base para conectar
-const conn = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'ASD3210asd@',
-    database: 'db_comum'
+//porta para o servidor
+app.listen(3000, ()=>{
+    console.log("O servidor está rodando.")
 })
 
-//método para conexão ao banco, com função de callback
-conn.connect ((erro) => {
-    if (erro){
-        console.log(erro);
-        return
-    }
-    console.log("Conectou no banco de dados!");
+// FOI PARA O ARQUIVO CONN.JS
+// base para conectar
+// const conn = mysql.createConnection({
+//     host: 'localhost',
+//     port: 3306,
+//     user: 'root',
+//     password: 'ASD3210asd@',
+//     database: 'db_comum'
+// })
 
-    app.listen(3000, ()=>{
-        console.log("O servidor está rodando.")
-    })
-})
+// FOI PARA O ARQUIVO CONN.JS
+// conn.connect ((erro) => {
+//     if (erro){
+//         console.log(erro);
+//         return
+//     }
+//     console.log("Conectou no banco de dados!");
+
+//     app.listen(3000, ()=>{
+//         console.log("O servidor está rodando.")
+//     })
+// })
+
 
 
 
