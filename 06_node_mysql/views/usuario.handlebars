@@ -1,9 +1,11 @@
-<h2>Detalhes do Usuário 000000</h2>
-
 {{#with usuario}}
-<p>Id Usuário: {{id_usuario}} </p>
-<p>Nome: {{nome_usuario}}</p>
-<p>Endereço: {{endereco_usuario}}</p>
-<p>E-mail: {{email_usuario}}</p>
-<p>Data de Nascimento: {{data_nascimento_usuario}}</p>
+<h2>Detalhes do Usuário - {{nome_usuario}}</h2>
+<ol class="list-group">
+<li class="list-group-item"><strong>Id Usuário:</strong> {{id_usuario}}</li>
+<li class="list-group-item"><strong>Nome:</strong> {{nome_usuario}}</li>
+<li class="list-group-item"><strong>Endereço:</strong> {{endereco_usuario}}</li>
+<li class="list-group-item"><strong>E-mail:</strong> {{email_usuario}}</li>
+<li class="list-group-item"><strong>Data de Nascimento:</strong> {{data_nascimento_usuario}}</li>
+</ol>
 {{/with}}
+
