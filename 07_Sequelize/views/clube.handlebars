@@ -1,0 +1,17 @@
+{{#with clube}}
+<h2>Detalhes do Clube - {{nome}}</h2>
+<br>
+<ol class="list-group">
+<li class="list-group-item"><strong>Id Clube:</strong> {{id}}</li>
+<li class="list-group-item"><strong>Nome do Clube:</strong> {{nome}}</li>
+{{#if status}}
+<li class="list-group-item"><strong>Status do Clube: </strong>Ativo</li>
+{{else}}
+<li class="list-group-item"><strong>Status do Clube: </strong>Inativo</li>
+{{/if}}
+<li class="list-group-item"><strong>Created:</strong> {{createdAt}}</li>
+<li class="list-group-item"><strong>Updated:</strong> {{updatedAt}}</li>
+</ol>
+{{/with}}
+<br>
+<a class="btn btn-primary" href="/clubes" role="button">Voltar</a>

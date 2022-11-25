@@ -8,7 +8,7 @@ app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
 //configuração para aceitar arquivo CSS
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 //Middleware para receber dados dos formulários
 app.use(
