@@ -15,3 +15,73 @@
 {{/with}}
 <br>
 <a class="btn btn-primary" href="/clubes" role="button">Voltar</a>
+
+<hr>
+<h2>Cadastrar Endereços</h2>
+
+<form action="/endereco/save" method="post">
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Logradouro:</label>
+        <div class="col-sm-10">
+            <input type="text" name="logradouro" class="form-control" placeholder="Digite o Logradouro" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">CEP:</label>
+        <div class="col-sm-10">
+            <input type="text" name="cep" class="form-control" placeholder="Digite o CEP" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Número:</label>
+        <div class="col-sm-10">
+            <input type="text" name="numero" class="form-control" placeholder="Digite o número" />
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Complemento:</label>
+        <div class="col-sm-10">
+            <input type="text" name="complemento" class="form-control" placeholder="Digite o complemento" />
+        </div>
+    </div>
+    <input type="hidden" name="ClubeId" value="{{clube.id}}"/>
+    <input type="submit" value="Cadastrar Endereço"/>
+</form>
+</table>
+
+<h2>Lista de Endereços do Clube</h2>
+<br>
+{{!-- <ol class="list-group">
+{{#each clube.Enderecos}}
+    <li class="list-group-item"><strong>Id Clube:</strong> {{this.id}}</li>
+    <li class="list-group-item"><strong>Logradouro:</strong> {{this.logradouro}}</li>
+    <li class="list-group-item"><strong>CEP:</strong> {{this.cep}}</li>
+    <li class="list-group-item"><strong>Número:</strong> {{this.numero}}</li>
+    <li class="list-group-item"><strong>Complemento:</strong> {{this.complemento}}</li>
+    <li class="list-group-item"><strong>Ações:</strong> <a href="/endereco/delete/{{this.ClubeId}}/{{this.id}}">Excluir</a></li>
+{{/each}}
+</ol> --}}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id Clube:</th>
+      <th scope="col">Logradouro</th>
+      <th scope="col">CEP</th>
+      <th scope="col">Número</th>
+      <th scope="col">Complemento</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each clube.Enderecos}}
+     <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.logradouro}}</td>
+      <td>{{this.cep}}</td>
+      <td>{{this.numero}}</td>
+      <td>{{this.complemento}}</td>
+      <td><a href="/endereco/delete/{{this.ClubeId}}/{{this.id}}">Excluir</a></td>
+      </tr>
+    {{/each}}
+   </tbody>
+</table>

@@ -3,7 +3,9 @@ const exphbs     = require('express-handlebars');
 const conn       = require('./db/conn');
 const app        = express('');
 
+//importanção dos models
 const Clube      = require('./models/Clube')
+const Endereco   = require('./models/Endereco')
 
 //config template engine handlebars
 app.engine('handlebars', exphbs.engine());
@@ -29,6 +31,23 @@ app.post('/clube/save', async (req,res)=>{
     res.redirect('/clubes');
 })
 
+//rota do endereco
+app.post('/endereco/save', async (req,res)=>{
+    const id         = req.body.ClubeId;
+    const logradouro = req.body.logradouro;
+    const cep        = req.body.cep;
+    const numero     = req.body.numero;
+    const complemento= req.body.complemento;
+    
+    const enderecoNovo = {logradouro, cep, numero, complemento, ClubeId: id}
+    await Endereco.create(enderecoNovo);
+
+    res.redirect (`/clube/${id}`)
+
+
+
+})
+
 //rota dos clubes
 app.get('/clubes', async (req,res)=>{
     const clubes = await Clube.findAll({raw: true});
@@ -40,9 +59,9 @@ app.get('/clubes', async (req,res)=>{
 app.get('/clube/:id', async (req, res)=>{
     const id = req.params.id;
 
-    const clube = await Clube.findOne({raw:true, where: {id: id}});
+    const clube = await Clube.findOne({include: Endereco, where: {id: id}});
 
-    res.render('clube', {clube});
+    res.render('clube', {clube: clube.get({plain: true})});
 })
 
 //rota para excluir os clubes
@@ -51,7 +70,17 @@ app.get('/clube/delete/:id', async (req,res)=>{
 
     await Clube.destroy({where: {id: id}});
 
-    res.redirect('/clubes');
+    res.redirect(`/clubes`);
+})
+
+//rota para excluir o endereço
+app.get('/endereco/delete/:idClube/:idEndereco', async (req,res)=>{
+    const idClube    = req.params.idClube;
+    const idEndereco = req.params.idEndereco;   
+
+    await Endereco.destroy({where: {id: idEndereco}});
+
+    res.redirect(`/clube/${idClube}`);
 })
 
 //rota de edição
@@ -94,7 +123,11 @@ app.get('/', (req, res) =>{
     res.render('home');
 })
 
-conn.sync().then(()=>{
+
+conn
+.sync()
+//.sync({force: true})
+.then(()=>{
     app.listen(3000);
 }).catch((error) => {
     console.log(error);
